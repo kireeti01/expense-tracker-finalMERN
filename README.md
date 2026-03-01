@@ -1,6 +1,7 @@
 # 💸 SpendWise: Expense Tracker
+SpendWise is a full-stack Expense Tracker app to manage your income and expenses efficiently. Built with React (Vite) on the frontend, Node.js (Express) on the backend, and MongoDB Atlas for data storage.
 
-SpendWise is a full-stack Expense Tracker app to manage your income and expenses efficiently. Built with **React (Vite)** on the frontend, **Node.js (Express)** for the backend, and **MongoDB** for data storage.
+Live Demo: https://expense-tracker-finalmern-frontend.onrender.com
 
 ---
 
@@ -44,7 +45,7 @@ Expense-Tracker/
 ### 1. Clone the repository
 
 ```bash
-https://github.com/kireeti01/my-project
+git clone https://github.com/kireeti01/expense-tracker-finalMERN.git
 ```
 
 ### 2. Backend setup
