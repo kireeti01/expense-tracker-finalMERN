@@ -26,7 +26,7 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow requests with no origin (Postman, curl, mobile apps)
+      // Allow requests with no origin (Postman, mobile apps)
       if (!origin) return callback(null, true);
 
       if (allowedOrigins.includes(origin)) {
@@ -35,26 +35,22 @@ app.use(
         return callback(new Error("Not allowed by CORS"));
       }
     },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
+    credentials: true
   })
 );
-
-// ✅ Handle preflight requests
-app.options("*", cors());
 
 /* ===========================
    ✅ MIDDLEWARES
 =========================== */
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Serve uploads folder statically
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 /* ===========================
-   ✅ API ROUTES
+   ✅ ROUTES
 =========================== */
 
 app.use("/api/v1/auth", authRoutes);
@@ -68,7 +64,10 @@ app.use("/api/v1/dashboard", dashboardRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ error: err.message || "Something went wrong!" });
+  res.status(500).json({
+    success: false,
+    message: err.message || "Something went wrong!",
+  });
 });
 
 /* ===========================
@@ -80,9 +79,11 @@ const PORT = process.env.PORT || 5000;
 const startServer = async () => {
   try {
     await connectDB();
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    app.listen(PORT, () =>
+      console.log(`🚀 Server running on port ${PORT}`)
+    );
   } catch (error) {
-    console.error("Failed to start server:", error);
+    console.error("❌ Failed to start server:", error);
     process.exit(1);
   }
 };
