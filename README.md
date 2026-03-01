@@ -96,4 +96,4 @@ npm run dev
 
 ## 🧑‍💼 Author
 - Yogendra kireeti
-- 📫 [GitHub](https://github.com/kireeti01/my-project)
+- 📫 [GitHub](https://github.com/kireeti01)
